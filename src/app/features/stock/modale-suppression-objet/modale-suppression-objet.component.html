@@ -1,0 +1,13 @@
+<dialog class="dialog" #modale>
+  <div class="dialog-header">
+    <h2>Suppression d'un objet</h2>
+  </div>
+  <div class="dialog-body">
+    <p>L'objet <b>{{$objetASupprimer()?.description}} ({{$objetASupprimer()?.categorie?.libelle}})</b> va être supprimé.</p>
+    <p>Souhaitez-vous confirmer la suppression ?</p>
+  </div>
+  <div class="dialog-footer">
+    <button class="action-secondaire" (click)="annuler()">Non</button>
+    <button class="action-principale" (click)="valider()">Oui</button>
+  </div>
+</dialog>

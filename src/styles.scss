@@ -1,1 +1,302 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  font-family: system-ui, sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  margin: 0;
+}
+
+h2 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  all: unset;
+}
+
+li {
+  all: unset;
+}
+
+// Boutons
+button {
+  &.action-principale {
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.25rem 1rem;
+    text-align: center;
+
+    &:not([disabled]) {
+      background-color: black;
+      border: 3px solid black;
+      color: white;
+
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+
+      &:focus {
+        text-decoration: underline;
+      }
+    }
+
+    &[disabled] {
+      background-color: grey;
+      border: 3px solid grey;
+      color: white;
+
+      &:hover {
+        cursor: not-allowed;
+      }
+    }
+  }
+  
+  &.action-secondaire {
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.25rem 1rem;
+    text-align: center;
+
+    &:not([disabled]) {
+      background-color: white;
+      border: 3px solid black;
+      color: black;
+
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+
+      &:focus {
+        text-decoration: underline;
+      }
+    }
+
+    &[disabled] {
+      background-color: white;
+      border: 3px solid grey;
+      color: grey;
+
+      &:hover {
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &.bouton-icone {
+    $taille-icone-base: 1.25rem;
+    $marge-interne-icone: 0.75rem;
+    $taille-icone: calc($taille-icone-base + $marge-interne-icone);
+
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $taille-icone;
+    height: $taille-icone;
+
+    &:not([disabled]) {
+      background-color: white;
+      border: 2px solid black;
+      fill: black;
+    
+      &:hover {
+        cursor: pointer;
+        background-color: black;
+        border: 2px solid black;
+        fill: white;
+      }
+
+      &:focus {
+        background-color: black;
+        border: 2px solid black;
+        fill: white;
+      }
+    }
+
+    &[disabled] {
+      background-color: white;
+      border: 2px solid grey;
+      fill: grey;
+    
+      &:hover {
+        cursor: not-allowed;
+      }
+    }
+
+    svg {
+      width: $taille-icone-base;
+      height: $taille-icone-base;
+    }
+  }
+}
+
+// Modale
+dialog {
+  padding: 0;
+}
+
+.dialog {
+  width: 50vw;
+}
+
+.dialog-header {
+  padding: 0.5rem 1rem;
+}
+
+.dialog-body {
+  padding: 0.5rem 1rem;
+}
+
+.dialog-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem 1rem;
+}
+
+// Formulaire
+label {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+input {
+  min-height: 24px;
+  font-size: 1rem;
+}
+
+select {
+  min-height: 32px;
+  font-size: 1rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.champ-formulaire {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.input-with-buttons {
+  display: flex;
+  gap: 0.5rem;
+  
+  input {
+    flex: 1;
+  }
+}
+
+// Tableau
+table {
+  border-spacing: 0;
+  height: 100%;
+  width: 100%;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  background-color: black;
+  color: white;
+
+  tr {
+    display: flex;
+  }
+
+  th {
+    align-content: center;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 0.5rem;
+    min-height: 48px;
+    font-size: 1.125rem;
+  }
+}
+
+tbody {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  tr {
+    display: flex;
+  
+    &.aucun-resultat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      min-height: 240px;
+  
+      .icone-aucun-resultat {
+        width: 160px;
+        height: 160px;
+      }
+  
+      .texte-aucun-resultat {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+    }
+    
+    &.chargement-en-cours {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      justify-content: center;
+      height: 100%;
+      min-height: 240px;
+  
+      .icone-chargement-en-cours {
+        width: 100px;
+        height: 100px;
+        animation: rotation 1.5s linear infinite;
+      }
+  
+      .texte-chargement-en-cours {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+    }
+  }
+  
+  td {
+    align-content: center;
+    min-height: 36px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 0.5rem;
+  }
+}
+
+// Animations
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

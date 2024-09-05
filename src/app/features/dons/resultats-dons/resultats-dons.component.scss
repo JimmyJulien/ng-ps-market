@@ -1,0 +1,26 @@
+$hauteur-titre-secondaire-base: 2rem;
+$marge-externe-titre-secondaire: 1rem;
+$hauteur-titre-secondaire: calc($hauteur-titre-secondaire-base + $marge-externe-titre-secondaire);
+
+.titre {
+  margin-bottom: 1rem;
+}
+
+.tableau {
+  border: 3px solid;
+  height: calc(100% - $hauteur-titre-secondaire);
+  overflow: auto;
+}
+
+.colonne-infos-objet {
+  width: 240px;
+  flex: 1;
+}
+
+.colonne-date-don {
+  width: 240px;
+}
+
+.colonne-destinataire-don {
+  width: 240px;
+}

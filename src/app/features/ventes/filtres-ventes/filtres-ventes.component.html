@@ -1,0 +1,35 @@
+<h2 class="titre">Filtres</h2>
+
+<form class="formulaire" [formGroup]="formulaireFiltres">
+  <div class="champ-formulaire">
+    <label>Infos objet</label>
+    <input type="text" [formControlName]="CHAMP_INFOS_OBJET">
+  </div>
+  <div class="champ-formulaire">
+    <label>Plateforme</label>
+    <app-selection-multiple
+      [$options]="(plateformes$ | async) || []"
+      [formControlName]="CHAMP_PLATEFORMES_VENTE"
+    />
+  </div>
+  <div class="champ-formulaire">
+    <label>Url</label>
+    <input type="url" [formControlName]="CHAMP_URL_VENTE">
+  </div>
+  <div class="champ-formulaire">
+    <label>Mise en vente</label>
+    <input type="date" [formControlName]="CHAMP_DATE_MISE_EN_VENTE">
+  </div>
+  <div class="champ-formulaire">
+    <label>Limite de vente</label>
+    <input type="date" [formControlName]="CHAMP_DATE_LIMITE_VENTE">
+  </div>
+  <div class="champ-formulaire">
+    <label>Statut</label>
+    <app-selection-multiple
+      [$options]="(statutsVente$ | async) || []"
+      [formControlName]="CHAMP_STATUTS"
+    />
+  </div>
+  <button class="action-principale" (click)="filtrer()">Filtrer</button>
+</form>

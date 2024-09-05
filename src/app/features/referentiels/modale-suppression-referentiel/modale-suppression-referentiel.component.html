@@ -1,0 +1,13 @@
+<dialog class="dialog" #modale>
+  <div class="dialog-header">
+    <h2>Suppression de valeur de référentiel</h2>
+  </div>
+  <div class="dialog-body">
+    <p>La valeur de référentiel <b>{{ $referentielASupprimer()?.libelle }}</b> va être supprimée.</p>
+    <p>Souhaitez-vous confirmer la suppression ?</p>
+  </div>
+  <div class="dialog-footer">
+    <button class="action-secondaire" (click)="annuler()">Non</button>
+    <button class="action-principale" (click)="valider()">Oui</button>
+  </div>
+</dialog>

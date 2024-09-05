@@ -1,0 +1,29 @@
+<dialog class="dialog" #modale>
+  <div class="dialog-header">
+    <h2>Ajout d'une valeur au référentiel {{ $referentielAModifier()?.libelle }}</h2>
+  </div>
+  <div class="dialog-body">
+    <form class="form" [formGroup]="formulaire">
+      <div class="champ-formulaire">
+        <label>Type</label>
+        <input type="text" [formControlName]="CHAMP_TYPE">
+      </div>
+      <div class="champ-formulaire">
+        <label>Code</label>
+        <input type="text" [formControlName]="CHAMP_CODE">
+      </div>
+      <div class="champ-formulaire">
+        <label>Libellé</label>
+        <input type="text" [formControlName]="CHAMP_LIBELLE">
+      </div>
+      <div class="champ-formulaire">
+        <label>Est modifiable</label>
+        <input type="checkbox" [formControlName]="CHAMP_EST_MODIFIABLE">
+      </div>
+    </form>
+  </div>
+  <div class="dialog-footer">
+    <button class="action-secondaire" (click)="annuler()">Annuler</button>
+    <button class="action-principale" [disabled]="formulaire.invalid" (click)="valider()">Valider</button>
+  </div>
+</dialog>

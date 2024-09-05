@@ -1,0 +1,40 @@
+<h2 class="titre">Resultats</h2>
+
+<div class="tableau">
+  <table>
+    <thead>
+      <tr>
+        <th class="colonne-infos-objet">Infos objet</th>
+        <th class="colonne-date-don">Date don</th>
+        <th class="colonne-destinataire-don">Destinataire don</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (estChargementDonneesEnCours$ | async) {
+        <tr class="chargement-en-cours">
+          <app-icone-chargement/>
+          <span class="texte-chargement-en-cours">Chargement des données...</span>
+        </tr>
+      }
+      @else {
+        @if (donsFiltres$ | async; as donsFiltres) {
+          @if (donsFiltres.length === 0) {
+            <tr class="aucun-resultat">
+              <app-icone-aucun-resultat/>
+              <span class="texte-aucun-resultat">Aucun résultat</span>
+            </tr>
+          }
+          @else {
+            @for (don of donsFiltres$ | async; track don.id) {
+              <tr>
+                <td class="colonne-infos-objet">{{ don.objet.description }} ({{ don.objet.categorie.libelle }})</td>
+                <td class="colonne-date-don">{{ don.dateDon | date: 'dd/MM/YYYY' }}</td>
+                <td class="colonne-destinataire-don">{{ don.destinataire }}</td>
+              </tr>
+            }
+          }
+        }
+      }
+    </tbody>
+  </table>
+</div>

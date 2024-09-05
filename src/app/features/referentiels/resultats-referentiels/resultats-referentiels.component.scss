@@ -1,0 +1,43 @@
+$hauteur-titre-secondaire-base: 2rem;
+$marge-externe-titre-secondaire: 1rem;
+$hauteur-titre-secondaire: calc($hauteur-titre-secondaire-base + $marge-externe-titre-secondaire);
+
+.titre {
+  margin-bottom: 1rem;
+}
+
+.tableau {
+  border: 3px solid black;
+  height: calc(100% - $hauteur-titre-secondaire);
+  overflow: auto;
+}
+
+.colonne-actions {
+  --nb-actions: 0;
+  $marge-interne: 0.5rem;
+  $espace-actions: 0.5rem;
+  $largeur-icone: 2.25rem;
+
+  display: flex;
+  align-items: center;
+  gap: $espace-actions;
+  padding: 0.25rem 0;
+  width: calc(var(--nb-actions) * $largeur-icone + (var(--nb-actions) - 1) * $espace-actions);
+}
+
+.colonne-type {
+  width: 160px;
+}
+
+.colonne-code {
+  width: 160px;
+}
+
+.colonne-libelle {
+  width: 240px;
+  flex: 1;
+}
+
+.colonne-est-modifiable {
+  width: 160px;
+}

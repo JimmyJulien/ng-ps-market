@@ -1,0 +1,50 @@
+<h1 class="titre-principal" data-testid="titre-principal">
+  <span>Stock</span>
+  <button class="action-principale" (click)="ouvrirModaleAjout = true">Ajouter</button>
+</h1>
+
+<div class="filtres-resultats">
+  <app-filtres-stock
+    class="filtres"
+    [$alignement]="alignement"
+    (filtrage)="filtrer($event)"
+  />
+  
+  <app-resultats-stock
+    class="resultats"
+    (modificationObjet)="modifierObjet($event)"
+    (miseEnVenteObjet)="mettreEnVenteObjet($event)"
+    (donObjet)="donnerObjet($event)"
+    (suppressionObjet)="supprimerObjet($event)"
+  />
+</div>
+
+<!-- Modale ajout objet -->
+<app-modale-ajout-objet
+  [ouvrir$]="ouvrirModaleAjout"
+  (fermeture)="ouvrirModaleAjout = false"
+/>
+
+<!-- Modale modification objet -->
+<app-modale-modification-objet
+  [$objetAModifier]="objetAModifier"
+  (fermeture)="objetAModifier = null"
+/>
+
+<!-- Modale mise en vente objet -->
+<app-modale-mise-en-vente-objet
+  [$objetAMettreEnVente]="objetAMettreEnVente"
+  (fermeture)="objetAMettreEnVente = null"
+/>
+
+<!-- Modale don objet -->
+<app-modale-don-objet
+  [$objetADonner]="objetADonner"
+  (fermeture)="objetADonner = null"
+/>
+
+<!-- Modale suppression objet -->
+<app-modale-suppression-objet
+  [$objetASupprimer]="objetASupprimer"
+  (fermeture)="objetASupprimer = null"
+/>

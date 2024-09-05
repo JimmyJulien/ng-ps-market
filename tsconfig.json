@@ -21,7 +21,18 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "baseUrl": "./src",
+    "paths": {
+      "@app/*": ["app/*"],
+      "@environments/*": ["environments/*"],
+      "@core/*": ["app/core/*"],
+      "@dons/*": ["app/features/dons/*"],
+      "@referentiels/*": ["app/features/referentiels/*"],
+      "@stock/*": ["app/features/stock/*"],
+      "@ventes/*": ["app/features/ventes/*"],
+      "@shared/*": ["app/shared/*"],
+    },
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

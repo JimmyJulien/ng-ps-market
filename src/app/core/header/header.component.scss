@@ -1,0 +1,46 @@
+:host {
+  display: flex;
+  min-height: 4rem;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: black;
+  color: white;
+  position: sticky;
+  top: 0;
+  padding: 0 1rem;
+  z-index: 1;
+}
+
+.logo-name {
+  display: flex;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.logo {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  align-content: center;
+}
+
+.navigation {
+  display: flex;
+  gap: 2rem;
+  font-size: 1.25rem;
+
+  a {
+    all: unset;
+
+    &:hover,
+    &:focus,
+    &.page-actuelle {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+}

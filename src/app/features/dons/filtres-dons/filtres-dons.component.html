@@ -1,0 +1,17 @@
+<h2 class="titre">Filtres</h2>
+
+<form class="formulaire" [formGroup]="formulaireFiltres">
+  <div class="champ-formulaire">
+    <label>Infos objet</label>
+    <input type="text" [formControlName]="CHAMP_INFOS_OBJET">
+  </div>
+  <div class="champ-formulaire">
+    <label>Date don</label>
+    <input type="date" [formControlName]="CHAMP_DATE_DON">
+  </div>
+  <div class="champ-formulaire">
+    <label>Destinataire don</label>
+    <input type="date" [formControlName]="CHAMP_DESTINATAIRE_DON">
+  </div>
+  <button class="action-principale" (click)="filtrer()">Filtrer</button>
+</form>

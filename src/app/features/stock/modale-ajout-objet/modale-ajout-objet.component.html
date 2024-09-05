@@ -1,0 +1,38 @@
+<dialog class="dialog" #modale>
+  <div class="dialog-header">
+    <h2>Ajout d'un objet</h2>
+  </div>
+  <div class="dialog-body">
+    <form class="form" [formGroup]="formulaire">
+      <div class="champ-formulaire">
+        <label>Catégorie</label>
+        <select [formControlName]="CHAMP_CATEGORIE">
+          @for (categorie of categories$ | async; track $index) {
+            <option [ngValue]="categorie">{{categorie.libelle}}</option>
+          }
+        </select>
+      </div>
+      <div class="champ-formulaire">
+        <label>Description</label>
+        <div class="input-with-buttons">
+          <input type="text" [formControlName]="CHAMP_DESCRIPTION">
+          @if (controleCategorie.value?.code === 'livre') {
+            <button class="action-principale" [disabled]="!controleDescription.value" (click)="chercher()">Chercher par ISBN</button>
+          }
+        </div>
+      </div>
+      <div class="champ-formulaire">
+        <label>Infos complémentaires</label>
+        <input type="text" [formControlName]="CHAMP_INFOS_COMPLEMENTAIRES">
+      </div>
+      <div class="champ-formulaire">
+        <label>Emplacement</label>
+        <input type="text" [formControlName]="CHAMP_EMPLACEMENT">
+      </div>
+    </form>
+  </div>
+  <div class="dialog-footer">
+    <button class="action-secondaire" (click)="annuler()">Annuler</button>
+    <button class="action-principale" [disabled]="formulaire.invalid" (click)="valider()">Valider</button>
+  </div>
+</dialog>

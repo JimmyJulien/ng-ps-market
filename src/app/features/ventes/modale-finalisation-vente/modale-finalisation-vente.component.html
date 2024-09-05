@@ -1,0 +1,13 @@
+<dialog class="dialog" #modale>
+  <div class="dialog-header">
+    <h2>Finalisation de vente</h2>
+  </div>
+  <div class="dialog-body">
+    <p>L'objet <b>{{$venteAFinaliser()?.objet?.description}} ({{$venteAFinaliser()?.objet?.categorie?.libelle}})</b>  va être retiré des ventes et les ventes associées à cet objet vont être annulées.</p>
+    <p>Souhaitez-vous finaliser la vente ?</p>
+  </div>
+  <div class="dialog-footer">
+    <button class="action-secondaire" (click)="annuler()">Non</button>
+    <button class="action-principale" (click)="valider()">Oui</button>
+  </div>
+</dialog>

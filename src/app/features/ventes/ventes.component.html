@@ -1,0 +1,33 @@
+<h1 class="titre-principal">Ventes</h1>
+
+<div class="filtres-resultats">
+  <app-filtres-ventes
+    class="filtres"
+    (filtrage)="filtrer($event)"
+  />
+  
+  <app-resultats-ventes
+    class="resultats"
+    (modificationVente)="modifierVente($event)"
+    (finalisationVente)="finaliserVente($event)"
+    (annulationVente)="annulerVente($event)"
+  />
+</div>
+
+<!-- Modale modification vente -->
+<app-modale-modification-vente
+  [$venteAModifier]="venteAModifier"
+  (fermeture)="venteAModifier = null"
+/>
+
+<!-- Modale finalisation vente -->
+<app-modale-finalisation-vente
+  [$venteAFinaliser]="venteAFinaliser"
+  (fermeture)="venteAFinaliser = null"
+/>
+
+<!-- Modale annulation vente -->
+<app-modale-annulation-vente
+  [$venteAAnnuler]="venteAAnnuler"
+  (fermeture)="venteAAnnuler = null"
+/>

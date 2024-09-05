@@ -1,0 +1,52 @@
+<h2 class="titre">Résultats</h2>
+<div class="tableau">
+  <table>
+    <thead>
+      <tr>
+        <th class="colonne-actions" style="--nb-actions: 2"></th>
+        <th class="colonne-type">Type</th>
+        <th class="colonne-code">Code</th>
+        <th class="colonne-libelle">Libellé</th>
+        <th class="colonne-est-modifiable">Est modifiable</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (estChargementDonneesEnCours$ | async) {
+        <tr class="chargement-en-cours">
+          <app-icone-chargement/>
+          <span class="texte-chargement-en-cours">Chargement des données...</span>
+        </tr>
+      }
+      @else {
+        @if (referentielsFiltres$ | async; as referentielsFiltres) {
+          @if (referentielsFiltres.length === 0) {
+            <tr class="aucun-resultat">
+              <app-icone-aucun-resultat/>
+              <span class="texte-aucun-resultat">Aucun résultat</span>
+            </tr>
+          }
+          @else {
+            @for (referentiel of referentielsFiltres; track referentiel.id) {
+              <tr>
+                <td class="colonne-actions" style="--nb-actions: 2">
+                  @if (referentiel.estModifiable) {
+                    <button class="bouton-icone" (click)="modifierReferentiel(referentiel)">
+                      <app-icone-modification/>
+                    </button>
+                    <button class="bouton-icone" (click)="supprimerReferentiel(referentiel)">
+                      <app-icone-croix/>
+                    </button>
+                  }
+                </td>
+                <td class="colonne-type">{{ referentiel.type }}</td>
+                <td class="colonne-code">{{ referentiel.code }}</td>
+                <td class="colonne-libelle">{{ referentiel.libelle }}</td>
+                <td class="colonne-est-modifiable">{{ referentiel.estModifiable ? 'Oui' : 'Non' }}</td>
+              </tr>
+            }
+          }
+        }
+      }
+    </tbody>
+  </table>
+</div>

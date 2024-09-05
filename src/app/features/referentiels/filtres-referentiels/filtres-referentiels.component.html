@@ -1,0 +1,25 @@
+<h2 class="titre">Filtres</h2>
+
+<form class="formulaire" [formGroup]="formulaireFiltres" [ngClass]="$alignement()">
+  <div class="champs-formulaire">
+    <div class="champ-formulaire">
+      <label>Type</label>
+      <input type="text" [formControlName]="CHAMP_TYPE">
+    </div>
+    <div class="champ-formulaire">
+      <label>Code</label>
+      <input type="text" [formControlName]="CHAMP_CODE">
+    </div>
+    <div class="champ-formulaire">
+      <label>Libellé</label>
+      <input type="text" [formControlName]="CHAMP_LIBELLE">
+    </div>
+    <div class="champ-formulaire">
+      <label>Est modifiable</label>
+      <input type="checkbox" [formControlName]="CHAMP_EST_MODIFIABLE">
+    </div>
+  </div>
+  <div class="bouton-formulaire">
+    <button class="action-principale" (click)="filtrer()">Filtrer</button>
+  </div>
+</form>

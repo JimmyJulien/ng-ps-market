@@ -1,0 +1,58 @@
+<h2 class="titre">Resultats</h2>
+
+<div class="tableau">
+  <table>
+    <thead>
+      <tr>
+        <th class="colonne-actions" style="--nb-actions: 3"></th>
+        <th class="colonne-infos-objet">Infos objet</th>
+        <th class="colonne-plateforme">Plateforme</th>
+        <th class="colonne-url">Url</th>
+        <th class="colonne-mise-en-vente">Mise en vente</th>
+        <th class="colonne-limite-vente">Limite de vente</th>
+        <th class="colonne-statut">Statut</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (estChargementDonneesEnCours$ | async) {
+        <tr class="chargement-en-cours">
+          <app-icone-chargement/>
+          <span class="texte-chargement-en-cours">Chargement des données...</span>
+        </tr>
+      }
+      @else {
+        @if (ventesFiltrees$ | async; as ventesFiltrees) {
+          @if (ventesFiltrees.length === 0) {
+            <tr class="aucun-resultat">
+              <app-icone-aucun-resultat/>
+              <span class="texte-aucun-resultat">Aucun résultat</span>
+            </tr>
+          }
+          @else {
+            @for (vente of ventesFiltrees$ | async; track vente.id) {
+              <tr>
+                <td class="colonne-actions" style="--nb-actions: 3">
+                  <button class="bouton-icone" [disabled]="vente.statutVente.code !== (statutVenteEnCours$ | async)?.code" (click)="modifierVente(vente)">
+                    <app-icone-modification/>
+                  </button>
+                  <button class="bouton-icone" [disabled]="vente.statutVente.code !== (statutVenteEnCours$ | async)?.code" (click)="finaliserVente(vente)">
+                    <app-icone-argent/>
+                  </button>
+                  <button class="bouton-icone" [disabled]="vente.statutVente.code !== (statutVenteEnCours$ | async)?.code" (click)="annulerVente(vente)">
+                    <app-icone-croix/>
+                  </button>
+                </td>
+                <td class="colonne-infos-objet">{{ vente.objet.categorie.libelle }} - {{ vente.objet.description }}</td>
+                <td class="colonne-plateforme">{{ vente.plateforme.libelle }}</td>
+                <td class="colonne-url"><a [href]="vente.url" target="_blank">{{ vente.url }}</a></td>
+                <td class="colonne-mise-en-vente">{{ (vente.dateMiseEnVente) ? (vente.dateMiseEnVente | date:'dd/MM/YYYY') : null }}</td>
+                <td class="colonne-limite-vente">{{ (vente | dateLimiteVente) ? (vente | dateLimiteVente | date:'dd/MM/YYYY') : null }}</td>
+                <td class="colonne-statut">{{ vente.statutVente.libelle }}</td>
+              </tr>
+            }
+          }
+        }
+      }
+    </tbody>
+  </table>
+</div>

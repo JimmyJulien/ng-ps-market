@@ -1,0 +1,58 @@
+<h2 class="titre">Résultats</h2>
+<div class="tableau">
+  <table>
+    <thead>
+      <tr data-testid="entetes-tableau">
+        <th class="colonne-actions" style="--nb-actions: 4"></th>
+        <th class="colonne-categorie">Catégorie</th>
+        <th class="colonne-description">Description</th>
+        <th class="colonne-infos-complementaires">Infos complémentaires</th>
+        <th class="colonne-emplacement">Emplacement</th>
+        <th class="colonne-statut">Statut</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (estChargementDonneesEnCours$ | async) {
+        <tr class="chargement-en-cours">
+          <app-icone-chargement/>
+          <span class="texte-chargement-en-cours">Chargement des données...</span>
+        </tr>
+      }
+      @else {
+        @if (objetsFiltres$ | async; as objetsFiltres) {
+          @if (objetsFiltres.length === 0) {
+            <tr class="aucun-resultat">
+              <app-icone-aucun-resultat/>
+              <span class="texte-aucun-resultat">Aucun résultat</span>
+            </tr>
+          }
+          @else {
+            @for (objet of objetsFiltres; track objet.id) {
+              <tr>
+                <td class="colonne-actions" style="--nb-actions: 4">
+                  <button class="bouton-icone" [disabled]="[(statutObjetDonne$ | async)?.code, (statutObjetVendu$ | async)?.code].includes(objet.statutObjet.code)" (click)="modifierObjet(objet)">
+                    <app-icone-modification/>
+                  </button>
+                  <button class="bouton-icone" [disabled]="[(statutObjetDonne$ | async)?.code, (statutObjetVendu$ | async)?.code].includes(objet.statutObjet.code)" (click)="mettreEnVenteObjet(objet)">
+                    <app-icone-vente/>
+                  </button>
+                  <button class="bouton-icone" [disabled]="[(statutObjetDonne$ | async)?.code, (statutObjetVendu$ | async)?.code].includes(objet.statutObjet.code)" (click)="donnerObjet(objet)">
+                    <app-icone-cadeau/>
+                  </button>
+                  <button class="bouton-icone" [disabled]="[(statutObjetDonne$ | async)?.code, (statutObjetVendu$ | async)?.code].includes(objet.statutObjet.code)" (click)="supprimerObjet(objet)">
+                    <app-icone-croix/>
+                  </button>
+                </td>
+                <td class="colonne-categorie">{{ objet.categorie.libelle }}</td>
+                <td class="colonne-description">{{ objet.description }}</td>
+                <td class="colonne-infos-complementaires">{{ objet.infos }}</td>
+                <td class="colonne-emplacement">{{ objet.emplacement }}</td>
+                <td class="colonne-statut">{{ objet.statutObjet.libelle }}</td>
+              </tr>
+            }
+          }
+        }
+      }
+    </tbody>
+  </table>
+</div>

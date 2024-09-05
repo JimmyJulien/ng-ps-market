@@ -1,0 +1,89 @@
+:host {
+  width: inherit;
+
+  &.desactive {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.input-avec-icone {
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .input {
+    border: none;
+    font-size: 1rem;
+    min-height: 1.5rem;
+    width: 100%;
+    outline: none;
+    padding: 0 0.5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .fleche-selection {
+    fill: black;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.conteneur-options {
+  position: relative;
+  opacity: 0;
+  z-index: 1;
+
+  &.ouvert {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  &.ferme {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.options {
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  .option-avec-checkbox {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+
+    &:focus-visible {
+      background-color: lightgrey;
+      outline: none;
+    }
+    
+    &:hover,
+    &.selectionnee {
+      background-color: lightgrey;
+      cursor: pointer;
+    }
+  }
+
+  .libelle-option {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}

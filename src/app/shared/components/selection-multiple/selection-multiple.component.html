@@ -1,0 +1,42 @@
+<div
+  #affichage
+  class="input-avec-icone"
+  tabindex="0"
+  (click)="toggleOptions()"
+  (keydown.enter)="toggleOptions($event)"
+  (keydown.space)="toggleOptions($event)"
+>
+  <input
+    class="input"
+    type="text"
+    readonly
+    [value]="$affichageOptions()"
+    tabindex="-1"
+  >
+  <svg class="fleche-selection" width="24" height="24">
+    <polygon points="6,8 18,8 12,18"/>
+  </svg>
+</div>
+<div class="conteneur-options" [ngClass]="(sontOptionsAccessibles && !estChampDesactive) ? 'ouvert' : 'ferme'">
+  <div class="options">
+    @for (option of $options(); track option.id) {
+      <div
+        #option
+        [attr.data-smo-id]="option.id"
+        class="option-avec-checkbox"
+        [ngClass]="{'selectionnee': $optionsSelectionnees().includes(option)}"
+        [tabindex]="sontOptionsAccessibles ? 0 : -1"
+        (click)="selectionnerOption(option)"
+        (keydown.enter)="selectionnerOption(option, $event)"
+        (keydown.space)="selectionnerOption(option, $event)"
+      >
+        <input
+          type="checkbox"
+          tabindex="-1"
+          [checked]="$optionsSelectionnees().includes(option)"
+        >
+        <div class="libelle-option">{{option.libelle}}</div>
+      </div>
+    }
+  </div>
+</div>

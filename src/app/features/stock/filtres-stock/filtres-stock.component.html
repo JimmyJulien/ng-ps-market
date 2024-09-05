@@ -1,0 +1,35 @@
+<h2 class="titre">Filtres</h2>
+
+<form class="formulaire" [formGroup]="formulaireFiltres" [ngClass]="$alignement()">
+  <div class="champs-formulaire">
+    <div class="champ-formulaire">
+      <label>Catégorie</label>
+      <app-selection-multiple
+        [$options]="(categories$ | async) || []"
+        [formControlName]="CHAMP_CATEGORIES"
+      />
+    </div>
+    <div class="champ-formulaire">
+      <label>Description</label>
+      <input type="text" [formControlName]="CHAMP_DESCRIPTION">
+    </div>
+    <div class="champ-formulaire">
+      <label>Infos complémentaires</label>
+      <input type="text" [formControlName]="CHAMP_INFOS_COMPLEMENTAIRES">
+    </div>
+    <div class="champ-formulaire">
+      <label>Emplacement</label>
+      <input type="text" [formControlName]="CHAMP_EMPLACEMENT">
+    </div>
+    <div class="champ-formulaire">
+      <label>Statut</label>
+      <app-selection-multiple
+        [$options]="(statutsObjet$ | async) || []"
+        [formControlName]="CHAMP_STATUTS"
+      />
+    </div>
+  </div>
+  <div class="bouton-formulaire">
+    <button class="action-principale" (click)="filtrer()">Filtrer</button>
+  </div>
+</form>

@@ -1,0 +1,37 @@
+<dialog class="dialog" #modale>
+  <div class="dialog-header">
+    <h2>Mise en vente d'un objet</h2>
+  </div>
+  <div class="dialog-body">
+    <form [formGroup]="formulaire">
+      <div class="champ-formulaire">
+        <label>Infos objet</label>
+        <input type="text" [formControlName]="CHAMP_INFOS_OBJET">
+      </div>
+      <div class="champ-formulaire">
+        <label>Date vente</label>
+        <input type="date" [formControlName]="CHAMP_DATE_MISE_EN_VENTE">
+      </div>
+      <div class="champ-formulaire">
+        <label>Plateforme</label>
+        <select [formControlName]="CHAMP_PLATEFORME_VENTE">
+          @for (plateforme of plateformesVente$ | async; track plateforme.code) {
+            <option [ngValue]="plateforme">{{ plateforme.libelle }}</option>
+          }
+        </select>
+      </div>
+      <div class="champ-formulaire">
+        <label>URL</label>
+        <input type="url" [formControlName]="CHAMP_URL_VENTE">
+      </div>
+      <div class="champ-formulaire">
+        <label>Délai vente</label>
+        <input type="number" [formControlName]="CHAMP_DELAI_VENTE">
+      </div>
+    </form>
+  </div>
+  <div class="dialog-footer">
+    <button class="action-secondaire" (click)="annuler()">Annuler</button>
+    <button class="action-principale" [disabled]="formulaire.invalid" (click)="valider()">Valider</button>
+  </div>
+</dialog>

@@ -1,0 +1,39 @@
+$hauteur-titre-secondaire-base: 2rem;
+$marge-externe-titre-secondaire: 1rem;
+$hauteur-titre-secondaire: calc($hauteur-titre-secondaire-base + $marge-externe-titre-secondaire);
+
+.titre {
+  margin-bottom: 1rem;
+}
+
+.formulaire {
+  --nb-champ-par-ligne: 0;
+  --alignement-horizontal-bouton: initial;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  height: calc(100% - $hauteur-titre-secondaire);
+  
+  .champs-formulaire {
+    display: grid;
+    grid-template-columns: repeat(var(--nb-champ-par-ligne), 1fr);
+    gap: 0.5rem;
+  }
+
+  .bouton-formulaire {
+    text-align: var(--alignement-horizontal-bouton);
+  }
+
+  &.vertical {
+    overflow: auto;
+    padding-right: 0.5rem;
+    --nb-champ-par-ligne: 1;
+    --alignement-horizontal-bouton: center;
+  }
+
+  &.horizontal {
+    --nb-champ-par-ligne: 3;
+    --alignement-horizontal-bouton: right;
+  }
+}

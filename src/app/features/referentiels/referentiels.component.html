@@ -1,0 +1,34 @@
+<h1 class="titre-principal">Référentiels</h1>
+
+<div class="filtres-resultats">
+  <app-filtres-referentiels
+    class="filtres"
+    [$alignement]="alignement"
+    (filtrage)="filtrer($event)"
+  />
+
+  <app-resultats-referentiels
+    class="resultats"
+    (modificationReferentiel)="modifierReferentiel($event)"
+    (suppressionReferentiel)="supprimerReferentiel($event)"
+  />
+</div>
+
+<!-- Modale ajout valeur -->
+<app-modale-ajout-referentiel
+  [$referentielAModifier]="referentielAModifier"
+  [$estModaleAjoutOuverte]="estModaleAjoutOuverte"
+  (fermeture)="referentielAModifier = null; estModaleAjoutOuverte = false;"
+/>
+
+<!-- Modale modification valeur -->
+<app-modale-modification-referentiel
+  [$referentielAModifier]="referentielAModifier"
+  (fermeture)="referentielAModifier = null"
+/>
+
+<!-- Modale suppression valeur -->
+<app-modale-suppression-referentiel
+  [$referentielASupprimer]="referentielASupprimer"
+  (fermeture)="referentielASupprimer = null"
+/>
